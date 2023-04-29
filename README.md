@@ -21,4 +21,4 @@ All of the images used for the project can be found in the images folder.
 
 **GitHub Pages**
 
-Here is a [link](https://calebkasel.github.io/se_project_aroundtheus/) for where you can view this website.
+- Here is a [link](https://calebkasel.github.io/se_project_aroundtheus/) for where you can view this website.
