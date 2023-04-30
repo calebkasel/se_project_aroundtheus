@@ -10,20 +10,16 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
+  margin: 0;
 }
 
 @media screen and (max-width: 480px) {
   .footer {
-    padding: 48px 20px 36px;
-    margin: 0;
+    padding-top: 48px;
+    padding-bottom: 36px;
   }
 
   .footer__copyright {
-    margin: 0;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
     font-size: 14px;
-    line-height: 1.2;
   }
 }

@@ -7,16 +7,24 @@
   height: 33px;
 }
 
+.header__divider {
+  border-bottom: #545454 solid 1px;
+  flex-grow: 1;
+  padding-top: 41px;
+}
+
 @media screen and (max-width: 480px) {
   .header {
     margin: 0;
     padding-top: 28px;
-    padding-bottom: 32px;
   }
 
   .header__image {
     width: 126px;
     height: 24px;
-    margin-left: 27px;
+  }
+
+  .header__divider {
+    padding-top: 32px;
   }
 }
