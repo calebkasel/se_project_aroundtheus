@@ -42,11 +42,12 @@
   height: 24px;
   grid-area: button;
   border: 2px solid #fff;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
   opacity: 0.6;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .profile__description {
@@ -69,11 +70,12 @@
   margin-left: auto;
   border: 2px solid #fff;
   border-radius: 2px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 @media screen and (max-width: 780px) {
@@ -131,6 +133,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .profile__info {
+    position: relative;
+  }
+
   .profile__title {
     text-align: center;
     font-size: 22px;
@@ -140,8 +146,8 @@
     width: 18px;
     height: 18px;
     position: absolute;
-    right: 34px;
-    top: 186px;
+    top: 30px;
+    right: 0;
   }
 
   .profile__description {
