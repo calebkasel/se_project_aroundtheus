@@ -105,6 +105,31 @@
         </footer>
       </main>
     </div>
+
+    <div class="modal modal__opened">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Edit Profile</p>
+        <form class="modal__form">
+          <input
+            type="text"
+            name="Name"
+            id="edit-profile-title"
+            placeholder="Name"
+            class="modal__input"
+          />
+          <input
+            type="text"
+            name="About Me"
+            id="edit-profile-description"
+            placeholder="Description"
+            class="modal__input"
+          />
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
