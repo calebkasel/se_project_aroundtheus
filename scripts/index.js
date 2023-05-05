@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -47,14 +47,17 @@ const cardTemplate =
 /*--------------------------------------------------------------------------------*/
 /*                               Functions                                        */
 /*--------------------------------------------------------------------------------*/
-function openPopup() {
+function fillEditProfileForm() {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-
-  profileEditModal.classList.add("modal__opened");
 }
-function closePopup() {
-  profileEditModal.classList.remove("modal__opened");
+
+function openEditProfileModal() {
+  fillEditProfileForm();
+  profileEditModal.classList.add("modal_opened");
+}
+function closeEditProfileModal() {
+  profileEditModal.classList.remove("modal_opened");
 }
 
 function getCardElement(data) {
@@ -77,21 +80,21 @@ function appendCard(data) {
 /*--------------------------------------------------------------------------------*/
 /*                               Event Handlers                                   */
 /*--------------------------------------------------------------------------------*/
-function handleProfileEditSubmits(e) {
+function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup();
+  closeEditProfileModal();
 }
 
 /*--------------------------------------------------------------------------------*/
 /*                               Event Listeners                                  */
 /*--------------------------------------------------------------------------------*/
 
-profileEditButton.addEventListener("click", openPopup);
+profileEditButton.addEventListener("click", openEditProfileModal);
 
-profileModalCloseButton.addEventListener("click", closePopup);
+profileModalCloseButton.addEventListener("click", closeEditProfileModal);
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmits);
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach(appendCard);
