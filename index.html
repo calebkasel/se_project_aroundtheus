@@ -24,7 +24,7 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
@@ -34,74 +34,7 @@
           <button class="profile__add-button"></button>
         </section>
         <section class="cards">
-          <ul class="cards__list">
-            <li class="card">
-              <img
-                src="./images/yosemite.jpg"
-                alt="Yosemite Valley"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Lake Louise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="Bald Mountains"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/latemar.jpg"
-                alt="Latemar"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/vanoise.jpg"
-                alt="Vanoise National"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lago.jpg"
-                alt="Lago di Braies"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="cards__list" id="cards-list"></ul>
         </section>
         <footer class="footer">
           <p class="footer__copyright">&copy; 2023 Around the U.S.</p>
@@ -116,17 +49,17 @@
           id="profile-edit-modal-close-button"
         ></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="edit-profile-modal-form">
           <input
             type="text"
-            name="Name"
+            name="title"
             id="edit-profile-title"
             placeholder="Name"
             class="modal__input"
           />
           <input
             type="text"
-            name="About Me"
+            name="description"
             id="edit-profile-description"
             placeholder="Description"
             class="modal__input"
@@ -135,6 +68,16 @@
         </form>
       </div>
     </div>
+
+    <template id="card-template">
+      <li class="card">
+        <img class="card__image" id="card-image" src="" alt="" />
+        <div class="card__description">
+          <h2 class="card__title" id="card-title"></h2>
+          <button class="card__like-button"></button>
+        </div>
+      </li>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </body>
