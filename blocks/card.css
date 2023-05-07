@@ -38,12 +38,16 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/heart-icon.svg) center no-repeat;
+  background: transparent url(../images/heart-inactive.svg) center no-repeat;
   width: 21px;
   height: 18px;
   border: none;
   transition: opacity 0.3s ease-in-out;
   cursor: pointer;
+}
+
+.card__like-button_active {
+  background-image: url(../images/heart-active.svg);
 }
 
 .card__like-button:hover {
