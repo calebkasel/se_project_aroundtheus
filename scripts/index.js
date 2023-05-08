@@ -96,8 +96,7 @@ function getCardElement(data) {
   });
 
   likeButton.addEventListener("click", (evt) => {
-    console.log("click");
-    evt.target.classList.toggle(".card__like-button_active");
+    evt.target.classList.toggle("card__like-button_active");
   });
 
   deleteButton.addEventListener("click", (evt) => {
