@@ -97,9 +97,7 @@
   color: #ff0000;
   opacity: 0;
   align-self: flex-start;
-  /* position: absolute;
-  top: calc(100% + 5px);
-  left: 0; */
+  padding-top: 5px;
   transition: opacity 0.3s;
 }
 
@@ -130,7 +128,10 @@
 }
 
 .modal__button_disabled {
-  background-color: #e5e5e5;
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  opacity: 0.2;
 }
 
 .modal__container-image {
