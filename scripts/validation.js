@@ -4,12 +4,12 @@ const options = {
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
-  errorSelector: ".modal__error",
   errorClass: "modal__error_visible",
 };
 
-function resetForm(formElement) {
-  const inputList = formElement.querySelectorAll(options.inputSelector);
+function resetForm(modal) {
+  const formElement = modal.querySelector(options.formSelector);
+  const inputList = modal.querySelectorAll(options.inputSelector);
 
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, options);
