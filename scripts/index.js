@@ -100,9 +100,13 @@ function closeModal(modal) {
 }
 
 function checkForFormErrors(modal) {
-  console.log("here");
-  if (modal.id === "profile-edit-modal" || modal.id === "add-card-modal") {
-    resetForm(modal);
+  const formElement = modal.querySelector(options.formSelector);
+
+  if (modal.id === "profile-edit-modal") {
+    resetForm(formElement);
+  } else if (modal.id === "add-card-modal") {
+    resetForm(formElement);
+    formElement.reset();
   }
 }
 

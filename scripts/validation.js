@@ -8,9 +8,8 @@ const options = {
   errorClass: "modal__error_visible",
 };
 
-function resetForm(modal) {
-  const inputList = modal.querySelectorAll(options.inputSelector);
-  const formElement = modal.querySelector(options.formSelector);
+function resetForm(formElement) {
+  const inputList = formElement.querySelectorAll(options.inputSelector);
 
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, options);
