@@ -4,21 +4,16 @@ const options = {
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
+  errorSelector: ".modal__error",
   errorClass: "modal__error_visible",
 };
 
-function resetForm(evt) {
-  const errorElements = document.querySelectorAll(".modal__error");
-  const inputElements = document.querySelectorAll(".modal__input");
+function resetForm(modal) {
+  const inputList = modal.querySelectorAll(options.inputSelector);
+  const formElement = modal.querySelector(options.formSelector);
 
-  errorElements.forEach((errorElement) => {
-    document.getElementById(errorElement.id).textContent = "";
-  });
-
-  inputElements.forEach((inputElement) => {
-    document
-      .getElementById(inputElement.id)
-      .classList.remove(options.inputErrorClass);
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, options);
   });
 }
 
@@ -40,7 +35,7 @@ function hideInputError(
   { inputErrorClass, errorClass }
 ) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-
+  console.log(formElement);
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
@@ -63,8 +58,10 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement, { inactiveButtonClass }) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 }
 
@@ -74,6 +71,13 @@ function setEventListeners(
 ) {
   const inputList = [...formElement.querySelectorAll(inputSelector)];
   const buttonElement = formElement.querySelector(submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, options);
+
+  formElement.addEventListener("reset", () => {
+    setTimeout((evt) => {
+      toggleButtonState(inputList, buttonElement, options);
+    }, 0);
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {

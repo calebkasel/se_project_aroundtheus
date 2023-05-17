@@ -88,15 +88,22 @@ function fillEditProfileForm() {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("click", modalExitWithClick);
-  document.addEventListener("keydown", modalExitWithEscape);
+  modal.addEventListener("click", exitModalWithClick);
+  document.addEventListener("keydown", exitModalWithEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.removeEventListener("click", modalExitWithClick);
-  document.removeEventListener("keydown", modalExitWithEscape);
-  resetForm();
+  modal.removeEventListener("click", exitModalWithClick);
+  document.removeEventListener("keydown", exitModalWithEscape);
+  checkForFormErrors(modal);
+}
+
+function checkForFormErrors(modal) {
+  console.log("here");
+  if (modal.id === "profile-edit-modal" || modal.id === "add-card-modal") {
+    resetForm(modal);
+  }
 }
 
 function getCardElement(data) {
@@ -133,14 +140,14 @@ function renderCard(data) {
   cardListElement.prepend(cardElement);
 }
 
-function modalExitWithEscape(evt) {
+function exitModalWithEscape(evt) {
   if (evt.key === "Escape") {
     const modalActive = document.querySelector(".modal_opened");
     closeModal(modalActive);
   }
 }
 
-function modalExitWithClick(evt) {
+function exitModalWithClick(evt) {
   if (evt.target === evt.currentTarget) {
     closeModal(evt.currentTarget);
   }
@@ -163,6 +170,12 @@ function handleAddCardSubmit(evt) {
 
   renderCard({ name, link });
   evt.target.reset();
+
+  const cardInputs = Array.from(
+    addCardForm.querySelectorAll(options.inputSelector)
+  );
+  toggleButtonState(cardInputs, addCardSubmit, options);
+
   closeModal(addCardModal);
 }
 /*--------------------------------------------------------------------------------*/
@@ -183,10 +196,6 @@ profileEditButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardButton.addEventListener("click", () => {
-  const cardInputs = Array.from(
-    addCardForm.querySelectorAll(options.inputSelector)
-  );
-  toggleButtonState(cardInputs, addCardSubmit, options);
   openModal(addCardModal);
 });
 
