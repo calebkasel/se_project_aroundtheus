@@ -28,15 +28,15 @@ function exitModalWithClick(evt) {
 }
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardTemplateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector;
+    this._cardTemplateSelector = cardTemplateSelector;
   }
 
   _getTemplate() {
     return document
-      .querySelector(this._cardSelector)
+      .querySelector(this._cardTemplateSelector)
       .content.firstElementChild.cloneNode(true);
   }
 

@@ -14,31 +14,24 @@ export default class FormValidator {
   }
 
   _showInputError(inputElement) {
-    console.log("not valid2");
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-    console.log(inputElement, inputElement.id);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
-    errorElement.add(this._errorClass);
+    errorElement.classList.add(this._errorClass);
   }
 
   _hideInputError(inputElement) {
-    console.log("valid2");
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = "";
   }
 
   _checkInputValidity(inputElement) {
-    console.log("checking validity");
-    if (inputElement.validity.valid) {
+    if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
-      console.log("not valid");
     } else {
       this._hideInputError(inputElement);
-      console.log("valid");
     }
   }
 
@@ -59,12 +52,14 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    console.log("here");
     this._inputList.forEach((inputElement) => {
-      console.log("in loop");
-      this._checkInputValidity(inputElement);
-      this._toggleButtonState();
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
     });
+
+    this._toggleButtonState();
   }
 
   enableValidation() {

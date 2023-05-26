@@ -165,7 +165,7 @@ function handleAddCardSubmit(evt) {
 
   const newCard = new Card({ name, link }, "#card-template");
 
-  renderCard(newCard);
+  renderCard(newCard.getView());
   evt.target.reset();
   closeModal(addCardModal);
 }
@@ -196,7 +196,7 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((initialCard) => {
   const card = new Card(initialCard, "#card-template");
-  cardListElement.append(renderCard(card.getView()));
+  cardListElement.append(card.getView());
 });
 
 const validationOptions = {
