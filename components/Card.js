@@ -1,31 +1,13 @@
+import {
+  openModal,
+  closeModal,
+  exitModalWithClick,
+  exitModalWithEscape,
+} from "../pages/index.js";
+
 const previewImageModal = document.querySelector("#preview-image-modal");
 const modalImage = previewImageModal.querySelector(".modal__image");
 const modalCaption = previewImageModal.querySelector(".modal__image-caption");
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  modal.addEventListener("click", exitModalWithClick);
-  document.addEventListener("keydown", exitModalWithEscape);
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  modal.removeEventListener("click", exitModalWithClick);
-  document.removeEventListener("keydown", exitModalWithEscape);
-}
-
-function exitModalWithEscape(evt) {
-  if (evt.key === "Escape") {
-    const modalActive = document.querySelector(".modal_opened");
-    closeModal(modalActive);
-  }
-}
-
-function exitModalWithClick(evt) {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.currentTarget);
-  }
-}
 
 export default class Card {
   constructor(data, cardTemplateSelector) {
@@ -53,9 +35,7 @@ export default class Card {
       this._handleDeleteButton()
     );
 
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage());
+    this._cardImage.addEventListener("click", () => this._handlePreviewImage());
   }
 
   _handleLikeButton() {

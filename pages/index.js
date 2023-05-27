@@ -102,37 +102,9 @@ function closeModal(modal) {
   document.removeEventListener("keydown", exitModalWithEscape);
 }
 
-// function getCardElement(data) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageElement = cardElement.querySelector(".card__image");
-//   const cardTitleElement = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-
-//   cardImageElement.addEventListener("click", (evt) => {
-//     openModal(previewImageModal);
-//     modalImage.src = evt.target.src;
-//     modalImage.alt = evt.target.alt;
-//     modalCaption.textContent = evt.target.alt;
-//   });
-
-//   likeButton.addEventListener("click", (evt) => {
-//     evt.target.classList.toggle("card__like-button_active");
-//   });
-
-//   deleteButton.addEventListener("click", (evt) => {
-//     evt.target.closest(".card").remove();
-//   });
-
-//   cardTitleElement.textContent = data.name;
-//   cardImageElement.src = data.link;
-//   cardImageElement.alt = data.name;
-
-//   return cardElement;
-// }
-
-function renderCard(card) {
-  cardListElement.prepend(card);
+function createCard(cardData) {
+  const newCard = new Card(cardData, "#card-template");
+  return newCard;
 }
 
 function exitModalWithEscape(evt) {
@@ -147,6 +119,8 @@ function exitModalWithClick(evt) {
     closeModal(evt.currentTarget);
   }
 }
+
+export { openModal, closeModal, exitModalWithClick, exitModalWithEscape };
 
 /*--------------------------------------------------------------------------------*/
 /*                               Event Handlers                                   */
@@ -163,9 +137,11 @@ function handleAddCardSubmit(evt) {
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
 
-  const newCard = new Card({ name, link }, "#card-template");
+  const newCard = createCard({ name, link });
 
-  renderCard(newCard.getView());
+  console.log(newCard);
+
+  cardListElement.prepend(newCard.getView());
   evt.target.reset();
   closeModal(addCardModal);
 }
@@ -182,20 +158,20 @@ closeButtons.forEach((button) => {
 profileEditButton.addEventListener("click", () => {
   openModal(profileEditModal);
   fillEditProfileForm();
-  // resetForm(profileEditModal);
+  editFormValidator.resetForm();
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
-  // resetForm(addCardModal);
+  addCardFormValidator.resetForm();
 });
 
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((initialCard) => {
-  const card = new Card(initialCard, "#card-template");
+  const card = createCard(initialCard);
   cardListElement.append(card.getView());
 });
 
