@@ -1,6 +1,5 @@
 export default class Modal {
   constructor({ modalSelector }) {
-    console.log(modalSelector);
     this._modalElement = document.querySelector(modalSelector);
     this._handleEscDown = this._handleEscClose.bind(this);
   }
@@ -19,16 +18,14 @@ export default class Modal {
 
   _handleEscClose(evt) {
     //listens for esc button
-    evt.preventDefault();
-
     if (evt.key === "Escape") {
       this.close();
     }
   }
 
-  setEventListeners() {
+  _setEventListeners() {
     //listens for events
-    this._modalElement.addEventListener("click", (evt) => {
+    this._modalElement.closest(".modal").addEventListener("click", (evt) => {
       if (
         evt.target.classList.contains("modal") ||
         evt.target.classList.contains("modal__close")

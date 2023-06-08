@@ -10,7 +10,7 @@ const modalImage = previewImageModal.querySelector(".modal__image");
 const modalCaption = previewImageModal.querySelector(".modal__image-caption");
 
 export default class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor({ data }, cardTemplateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;

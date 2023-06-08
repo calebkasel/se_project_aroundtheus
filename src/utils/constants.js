@@ -1,38 +1,53 @@
+const lagoDiBraiesImage = new URL("../images/lago.jpg", import.meta.url);
+const vanoiseNationalParkImage = new URL(
+  "../images/vanoise.jpg",
+  import.meta.url
+);
+const lakeLouiseImage = new URL("../images/lake-louise.jpg", import.meta.url);
+const latemarImage = new URL("../images/latemar.jpg", import.meta.url);
+const baldMountainsImage = new URL(
+  "../images/bald-mountains.jpg",
+  import.meta.url
+);
+const yosemiteValleyImage = new URL("../images/yosemite.jpg", import.meta.url);
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    link: yosemiteValleyImage,
   },
   {
     name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    link: lakeLouiseImage,
   },
   {
     name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+    link: baldMountainsImage,
   },
   {
     name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+    link: latemarImage,
   },
   {
     name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+    link: vanoiseNationalParkImage,
   },
   {
     name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+    link: lagoDiBraiesImage,
   },
 ];
 
 export const selectors = {
   cardsList: ".cards__list",
-  cardTemplate: "#card-element",
+  cardTemplate: "#card-template",
   previewImageModal: "#preview-image-modal",
   editFormModal: "#profile-edit-modal",
   addCardModal: "#add-card-modal",
-  profileName: "#edit-profile-title",
-  profileDescription: "#edit-profile-description",
+  profileTitle: "#profile-title",
+  profileDescription: "#prof-description",
+  profileEditName: "#edit-profile-title",
+  profileEditDescription: "#edit-profile-description",
   formModalContainer: ".modal__container",
   imageModalContainer: ".modal__container-image",
 };
