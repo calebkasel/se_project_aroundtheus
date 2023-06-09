@@ -16,7 +16,7 @@ export default class FormModal extends Modal {
     );
   }
 
-  _getInPutValues() {
+  _getInputValues() {
     const inputs = {};
 
     this._inputList.forEach((input) => {
@@ -27,12 +27,11 @@ export default class FormModal extends Modal {
   }
 
   setEventListeners() {
-    super._setEventListeners();
+    super.setEventListeners();
 
     this._submitButton.addEventListener("click", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInPutValues());
-      this.close();
+      this._handleFormSubmit(this._getInputValues());
     });
   }
 

@@ -15,8 +15,4 @@ export default class ImageModal extends Modal {
     this._image.alt = data.name;
     super.open();
   }
-
-  setEventListeners() {
-    super._setEventListeners();
-  }
 }

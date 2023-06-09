@@ -1,9 +1,3 @@
-export const previewImageModal = document.querySelector("#preview-image-modal");
-export const modalImage = previewImageModal.querySelector(".modal__image");
-export const modalCaption = previewImageModal.querySelector(
-  ".modal__image-caption"
-);
-
 export const initialCards = [
   {
     name: "Amalfi, Italy",

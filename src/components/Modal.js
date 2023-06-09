@@ -23,7 +23,7 @@ export default class Modal {
     }
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     //listens for events
     this._modalElement.closest(".modal").addEventListener("click", (evt) => {
       if (

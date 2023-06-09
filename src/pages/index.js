@@ -26,6 +26,22 @@ const profileEditDescription = document.querySelector(
 const editFormValidator = new FormValidator(validationOptions, profileEditForm);
 const addCardFormValidator = new FormValidator(validationOptions, addCardForm);
 
+const imageModal = new ImageModal(selectors.previewImageModal);
+
+const renderCard = (data) => {
+  const card = new Card(
+    {
+      data,
+      handleCardClick: (data) => {
+        imageModal.open(data);
+      },
+    },
+    selectors.cardTemplate
+  );
+
+  cardList.addItem(card.getView());
+};
+
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
@@ -37,46 +53,26 @@ const userInfo = new UserInfo({
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      const card = new Card(
-        {
-          data,
-          handleCardClick: () => {
-            imageModal.open(data);
-          },
-        },
-        selectors.cardTemplate
-      );
-
-      cardList.addItem(card.getView());
-    },
+    renderer: renderCard,
   },
   selectors.cardsList
 );
 
-const imageModal = new ImageModal(selectors.previewImageModal);
-
 const userInfoModal = new FormModal({
   modalSelector: selectors.editFormModal,
-  handleFormSubmit: () => {
-    userInfo.setUserInfo(profileEditTitle.value, profileEditDescription.value);
+  handleFormSubmit: (values) => {
+    userInfo.setUserInfo(values.name, values.description);
+
+    userInfoModal.close();
   },
 });
 
 const newCardModal = new FormModal({
   modalSelector: selectors.addCardModal,
   handleFormSubmit: (data) => {
-    const card = new Card(
-      {
-        data,
-        handleCardClick: () => {
-          imageModal.open(data);
-        },
-      },
-      selectors.cardTemplate
-    );
+    renderCard(data);
 
-    cardList.addItem(card.getView());
+    newCardModal.close();
   },
 });
 
@@ -92,6 +88,7 @@ profileEditButton.addEventListener("click", () => {
   profileEditTitle.value = profileInfo.name;
   profileEditDescription.value = profileInfo.description;
 
+  editFormValidator.resetForm();
   userInfoModal.open();
 });
 

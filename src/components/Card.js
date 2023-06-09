@@ -1,15 +1,9 @@
-import { openModal } from "../utils/utils.js";
-import {
-  previewImageModal,
-  modalImage,
-  modalCaption,
-} from "../utils/constants.js";
-
 export default class Card {
-  constructor({ data }, cardTemplateSelector) {
+  constructor({ data, handleCardClick }, cardTemplateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -31,7 +25,9 @@ export default class Card {
       this._handleDeleteButton()
     );
 
-    this._cardImage.addEventListener("click", () => this._handlePreviewImage());
+    this._cardImage.addEventListener("click", () =>
+      this._handleCardClick({ name: this._name, link: this._link })
+    );
   }
 
   _handleLikeButton() {
@@ -41,13 +37,6 @@ export default class Card {
   _handleDeleteButton() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
-
-  _handlePreviewImage() {
-    openModal(previewImageModal);
-    modalImage.src = this._cardImage.src;
-    modalImage.alt = this._cardImage.alt;
-    modalCaption.textContent = this._cardImage.alt;
   }
 
   getView() {
