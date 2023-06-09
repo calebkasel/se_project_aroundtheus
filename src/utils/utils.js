@@ -10,11 +10,6 @@ function closeModal(modal) {
   document.removeEventListener("keydown", exitModalWithEscape);
 }
 
-function createCard(cardData) {
-  const newCard = new Card(cardData, "#card-template");
-  return newCard;
-}
-
 function exitModalWithEscape(evt) {
   if (evt.key === "Escape") {
     const modalActive = document.querySelector(".modal_opened");
