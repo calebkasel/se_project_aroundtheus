@@ -1,40 +1,33 @@
-const lagoDiBraiesImage = new URL("../images/lago.jpg", import.meta.url);
-const vanoiseNationalParkImage = new URL(
-  "../images/vanoise.jpg",
-  import.meta.url
+export const previewImageModal = document.querySelector("#preview-image-modal");
+export const modalImage = previewImageModal.querySelector(".modal__image");
+export const modalCaption = previewImageModal.querySelector(
+  ".modal__image-caption"
 );
-const lakeLouiseImage = new URL("../images/lake-louise.jpg", import.meta.url);
-const latemarImage = new URL("../images/latemar.jpg", import.meta.url);
-const baldMountainsImage = new URL(
-  "../images/bald-mountains.jpg",
-  import.meta.url
-);
-const yosemiteValleyImage = new URL("../images/yosemite.jpg", import.meta.url);
 
 export const initialCards = [
   {
-    name: "Yosemite Valley",
-    link: yosemiteValleyImage,
+    name: "Amalfi, Italy",
+    link: "https://images.unsplash.com/photo-1612698093158-e07ac200d44e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
   },
   {
-    name: "Lake Louise",
-    link: lakeLouiseImage,
+    name: "Tokyo, Japan",
+    link: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
   },
   {
-    name: "Bald Mountains",
-    link: baldMountainsImage,
+    name: "Dublin, Ireland",
+    link: "https://images.unsplash.com/photo-1564959130747-897fb406b9af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
   },
   {
-    name: "Latemar",
-    link: latemarImage,
+    name: "New York City",
+    link: "https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
   },
   {
-    name: "Vanoise National Park",
-    link: vanoiseNationalParkImage,
+    name: "San Francisco",
+    link: "https://images.unsplash.com/photo-1526404423292-15db8c2334e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
   },
   {
-    name: "Lago di Braies",
-    link: lagoDiBraiesImage,
+    name: "Minneapolis",
+    link: "https://images.unsplash.com/photo-1535082049017-5a7b43f3bcef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWlubmVzb3RhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
   },
 ];
 

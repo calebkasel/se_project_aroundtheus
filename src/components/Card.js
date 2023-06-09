@@ -1,13 +1,9 @@
+import { openModal } from "../utils/utils.js";
 import {
-  openModal,
-  closeModal,
-  exitModalWithClick,
-  exitModalWithEscape,
-} from "../pages/index.js";
-
-const previewImageModal = document.querySelector("#preview-image-modal");
-const modalImage = previewImageModal.querySelector(".modal__image");
-const modalCaption = previewImageModal.querySelector(".modal__image-caption");
+  previewImageModal,
+  modalImage,
+  modalCaption,
+} from "../utils/constants.js";
 
 export default class Card {
   constructor({ data }, cardTemplateSelector) {
