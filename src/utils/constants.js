@@ -25,12 +25,19 @@ export const initialCards = [
   },
 ];
 
+export const currentProfPic = document.querySelector(".profile__image");
+export const profPicButton = document.querySelector(".profile__image_edit");
+export const profPicInput = document.querySelector("#change-prof-pic-url");
+export const cardList = document.querySelector(".cards__list");
+
 export const selectors = {
   cardsList: ".cards__list",
   cardTemplate: "#card-template",
   previewImageModal: "#preview-image-modal",
+  changeProfPic: "#change-prof-pic-modal",
   editFormModal: "#profile-edit-modal",
   addCardModal: "#add-card-modal",
+  deletCardModal: "#confirm-delete-modal",
   profileTitle: "#profile-title",
   profileDescription: "#prof-description",
   profileEditName: "#edit-profile-title",

@@ -24,6 +24,10 @@
   opacity: 0.6;
 }
 
+.card__delete-button-hidden {
+  display: none;
+}
+
 .card__image {
   width: 282px;
   height: 282px;
@@ -66,10 +70,30 @@
   cursor: pointer;
 }
 
+.card__likes-count {
+  position: relative;
+  width: 9px;
+  height: 13px;
+  bottom: -15px;
+  right: 15px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  line-height: 16px;
+  font-size: 13px;
+  color: #000;
+}
+
 .card__like-button_active {
   background-image: url(../images/heart-active.svg);
 }
 
 .card__like-button:hover {
   opacity: 0.5;
+  cursor: pointer;
+}
+
+.card__like-button_active:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }

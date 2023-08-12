@@ -14,6 +14,15 @@ export default class FormModal extends Modal {
     this._inputList = this._modalElement.querySelectorAll(
       validationOptions.inputSelector
     );
+    this._submitButtonText = this._submitButton.textContent;
+  }
+
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 
   _getInputValues() {

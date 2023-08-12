@@ -17,11 +17,14 @@
       </header>
       <main class="page__section">
         <section class="profile">
-          <img
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image_overlay">
+            <img
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button class="profile__image_edit" type="button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
@@ -130,6 +133,56 @@
         ></button>
         <img src="#" alt="#" class="modal__image" />
         <h3 class="modal__image-caption"></h3>
+      </div>
+    </div>
+
+    <div class="modal" id="confirm-delete-modal">
+      <div class="modal__container">
+        <form class="modal__form">
+          <button
+            class="modal__close"
+            id="delete-modal-close-button"
+            type="button"
+          ></button>
+          <h3 class="modal__heading">"Are you sure?"</h3>
+          <button class="modal__button" id="confirm-button" type="button">
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="change-prof-pic-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="change-prof-pic-close-button"
+          type="button"
+        ></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form
+          class="modal__form"
+          id="change-prof-pic-form"
+          name="change-prof-pic-form"
+        >
+          <input
+            class="modal__input"
+            type="url"
+            name="prof-pic-url"
+            id="change-prof-pic-url"
+            placeholder="Profile Picture URL"
+            required
+          />
+          <span class="modal__error" id="change-prof-pic-url-error"></span>
+          <button
+            class="modal__button modal__button_inactive"
+            id="update-prof-pic-button"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
 
