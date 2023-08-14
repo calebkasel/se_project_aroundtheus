@@ -55,6 +55,7 @@ const changeProfPicModal = new FormModal({
 
       .finally(() => {
         changeProfPicModal.renderLoading(false, "Save");
+        console.log(currentProfPic.src);
       });
   },
 });
@@ -71,10 +72,19 @@ const deleteCardModal = new ConfirmModal(selectors.deletCardModal);
 
 const userInfoModal = new FormModal({
   modalSelector: selectors.editFormModal,
-  handleFormSubmit: (values) => {
-    userInfo.setUserInfo(values.name, values.description);
+  handleFormSubmit: ({ name, description }) => {
+    userInfoModal.renderLoading(true);
+    api
+      .changeUserInfo(name, description)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.description);
+        userInfoModal.close();
+      })
+      .catch(console.error)
 
-    userInfoModal.close();
+      .finally(() => {
+        userInfoModal.renderLoading(false, "Save");
+      });
   },
 });
 
@@ -129,18 +139,6 @@ changeProfPicModal.setEventListeners();
 // cardList.renderItems();
 
 profileEditButton.addEventListener("click", ({ name, description }) => {
-  // userInfoModal.renderLoading(true);
-  // api
-  //   .changeUserInfo(name, description)
-  //   .then((data) => {
-  //     userInfo.setUserInfo(data.name, data.description);
-  //     userInfoModal.close();
-  //   })
-  //   .catch(console.error)
-
-  //   .finally(() => {
-  //     userInfoModal.renderLoading(false, "Save");
-  //   });
   const profileInfo = userInfo.getUserInfo();
 
   profileEditTitle.value = profileInfo.name;
@@ -168,14 +166,14 @@ console.log(api.getUserInfo());
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userId = userData._id;
-    userInfo.setUserInfo(userData.name, userData.description);
-    console.log(userData.description);
+    userInfo.setUserInfo(userData.name, userData.about);
+    console.log(userData.avatar);
     userInfo.setUserAvatar(userData.avatar);
     cardListSection = new Section(
       {
         items: initialCards,
         renderer: (data) => {
-          const newCard = createCard(data, userId);
+          const newCard = renderCard(data, userId);
           cardListSection.addItem(newCard);
         },
       },

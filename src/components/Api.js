@@ -6,7 +6,7 @@ export default class Api {
 
   _checkResponse(result) {
     if (result.ok) {
-      return result.json;
+      return result.json();
     }
 
     return Promise.reject(`Error: ${result.status}`);
@@ -54,7 +54,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
+        title: name,
         link: link,
       }),
     });

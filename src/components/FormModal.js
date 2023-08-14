@@ -29,7 +29,9 @@ export default class FormModal extends Modal {
     const inputs = {};
 
     this._inputList.forEach((input) => {
-      inputs[input.name] = input.value;
+      if (input.value !== "") {
+        inputs[input.name] = input.value;
+      }
     });
 
     return inputs;
