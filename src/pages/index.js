@@ -14,7 +14,6 @@ import {
   selectors,
   cardList,
   profPicButton,
-  currentProfPic,
 } from "../utils/constants.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -26,20 +25,13 @@ const profileEditDescription = document.querySelector(
   "#edit-profile-description"
 );
 
-// const editFormValidator = new FormValidator(validationOptions, profileEditForm);
-// const addCardFormValidator = new FormValidator(validationOptions, addCardForm);
-// editFormValidator.enableValidation();
-// addCardFormValidator.enableValidation();
-
 const imageModal = new ImageModal(selectors.previewImageModal);
 
 const userInfo = new UserInfo({
   userName: selectors.profileTitle,
   userDescription: selectors.profileDescription,
-  currentProfPic,
+  currentProfPic: selectors.profileAvatar,
 });
-
-console.log(currentProfPic.src);
 
 const changeProfPicModal = new FormModal({
   modalSelector: selectors.changeProfPic,
@@ -48,28 +40,19 @@ const changeProfPicModal = new FormModal({
     api
       .updateProfPic(url)
       .then((data) => {
-        console.log(data.avatar);
-        userInfo.setUserAvatar(data);
+        console.log(data);
+        userInfo.setUserAvatar(data.avatar);
         changeProfPicModal.close();
       })
       .catch(console.error)
 
       .finally(() => {
         changeProfPicModal.renderLoading(false, "Save");
-        console.log(currentProfPic.src);
       });
   },
 });
 
 const deleteCardModal = new ConfirmModal(selectors.deletCardModal);
-
-// const cardList = new Section(
-//   {
-//     items: initialCards,
-//     renderer: renderCard,
-//   },
-//   selectors.cardsList
-// );
 
 const userInfoModal = new FormModal({
   modalSelector: selectors.editFormModal,
