@@ -28,13 +28,13 @@ export default class Api {
     });
   }
 
-  changeUserInfo(name, description) {
-    return this._request(`${this._baseUrl}/users/me/avatar`, {
+  changeUserInfo(name, about) {
+    return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
-        description: description,
+        about: about,
       }),
     });
   }
@@ -51,10 +51,10 @@ export default class Api {
 
   addCard(name, link) {
     return this._request(`${this._baseUrl}/cards`, {
-      method: "PATCH",
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        title: name,
+        name: name,
         link: link,
       }),
     });

@@ -69,7 +69,7 @@ export default class Card {
   }
 
   isLiked() {
-    return this._likes.some((like) => like._id === this.myId);
+    return this._likes.some((like) => like._id === this._userId);
   }
 
   setLikes(likes) {
@@ -104,7 +104,7 @@ export default class Card {
 
     this._fillCardData();
     this._hideDeleteButton();
-    this._renderLikes();
+    //this._renderLikes();
     this._setEventListeners();
 
     return this._cardElement;

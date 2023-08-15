@@ -167,7 +167,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userId = userData._id;
     userInfo.setUserInfo(userData.name, userData.about);
-    console.log(userData.avatar);
     userInfo.setUserAvatar(userData.avatar);
     cardListSection = new Section(
       {
@@ -210,18 +209,18 @@ const renderCard = (data, userId) => {
         api
           .changeLikeNumber(cardId, isLiked)
           .then((data) => {
-            cardElement.setLikes(data.likes);
+            card.setLikes(data.likes);
           })
           .catch(console.error);
       },
       handleDeleteButton: (cardId) => {
         deleteCardModal.setSubmitAction(() => {
           deleteCardModal.renderLoading(true);
-          cardElement.deleteCard();
+          card.deleteCard();
           api
             .deleteCard(cardId)
             .then((result) => {
-              cardElement.remove(result.cardId);
+              card.remove(result.cardId);
               deleteCardModal.close();
             })
             .catch(console.error)
@@ -236,7 +235,7 @@ const renderCard = (data, userId) => {
     userId
   );
 
-  cardList.addItem(card.getView());
+  cardListSection.addItem(card.getView());
 };
 
 // function handleProfPicFormSubmit(url) {
