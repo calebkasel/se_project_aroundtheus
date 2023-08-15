@@ -78,7 +78,7 @@ export default class Card {
   }
 
   _renderLikes() {
-    this._cardLikeCounter.textContent = this._likes.length;
+    this._cardLikeCounter = this._likes.length;
 
     if (this.isLiked()) {
       this._likeButton.classList.add("card__like-button_active");
@@ -104,7 +104,7 @@ export default class Card {
 
     this._fillCardData();
     this._hideDeleteButton();
-    //this._renderLikes();
+    this._renderLikes();
     this._setEventListeners();
 
     return this._cardElement;

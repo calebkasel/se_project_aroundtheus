@@ -48,7 +48,8 @@ const changeProfPicModal = new FormModal({
     api
       .updateProfPic(url)
       .then((data) => {
-        userInfo.setUserAvatar(data.avatar);
+        console.log(data.avatar);
+        userInfo.setUserAvatar(data);
         changeProfPicModal.close();
       })
       .catch(console.error)
@@ -77,7 +78,7 @@ const userInfoModal = new FormModal({
     api
       .changeUserInfo(name, description)
       .then((data) => {
-        userInfo.setUserInfo(data.name, data.description);
+        userInfo.setUserInfo(data.name, data.about);
         userInfoModal.close();
       })
       .catch(console.error)
@@ -90,10 +91,11 @@ const userInfoModal = new FormModal({
 
 const newCardModal = new FormModal({
   modalSelector: selectors.addCardModal,
-  handleFormSubmit: ({ title, link }) => {
+  handleFormSubmit: ({ name, link }) => {
     newCardModal.renderLoading(true);
     api
-      .addCard((data) => {
+      .addCard(name, link)
+      .then((data) => {
         const newCard = renderCard(data, userId);
         cardListSection.addItem(newCard);
         newCardModal.close();
@@ -135,6 +137,7 @@ imageModal.setEventListeners();
 userInfoModal.setEventListeners();
 newCardModal.setEventListeners();
 changeProfPicModal.setEventListeners();
+deleteCardModal.setEventListeners();
 
 // cardList.renderItems();
 
@@ -160,8 +163,6 @@ addCardButton.addEventListener("click", () => {
 
 let userId;
 let cardListSection;
-
-console.log(api.getUserInfo());
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
