@@ -30,9 +30,14 @@ export default class ConfirmModal extends Modal {
     this._submitForm();
   };
 
+  open() {
+    super.open();
+    this.setEventListeners();
+  }
+
   close() {
-    this._modalForm.removeEventListener("submit", this._submitForm);
     super.close();
+    this._modalForm.removeEventListener("submit", this._handleSubmit);
   }
 
   setEventListeners() {
