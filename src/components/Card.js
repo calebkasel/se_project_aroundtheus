@@ -61,8 +61,8 @@ export default class Card {
     }
   }
 
-  deleteCard() {
-    this._remove();
+  handleDeleteCard() {
+    this._deleteCard();
   }
 
   getId() {
@@ -88,7 +88,7 @@ export default class Card {
     }
   }
 
-  _remove() {
+  _deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }

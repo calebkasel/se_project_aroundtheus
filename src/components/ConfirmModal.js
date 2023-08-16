@@ -4,7 +4,7 @@ export default class ConfirmModal extends Modal {
   constructor(modalSelector) {
     super({ modalSelector });
     this._modalForm = this._modalElement.querySelector(".modal__form");
-    this._confirmButton = this._modalElement.querySelector("modal__button");
+    this._confirmButton = this._modalElement.querySelector(".modal__button");
 
     this._submitForm = this._submitForm.bind(this);
   }
@@ -32,6 +32,9 @@ export default class ConfirmModal extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
-    this._modalForm.addEventListener("submit", this._submitForm);
+    this._modalForm.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this._submitForm();
+    });
   }
 }
