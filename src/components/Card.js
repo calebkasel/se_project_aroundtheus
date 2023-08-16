@@ -15,6 +15,7 @@ export default class Card {
     this._ownerId = data.owner._id;
     this._userId = userId;
     this._id = data._id;
+    this._cardLikeCounter;
 
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
@@ -51,7 +52,7 @@ export default class Card {
   }
 
   _handleDeleteButtonClick() {
-    this._handleDeleteButton(this._id);
+    this._handleDeleteButton();
   }
 
   _hideDeleteButton() {
@@ -61,7 +62,7 @@ export default class Card {
   }
 
   deleteCard() {
-    this._handleDeleteButton(this._id);
+    this._remove();
   }
 
   getId() {
@@ -78,7 +79,7 @@ export default class Card {
   }
 
   _renderLikes() {
-    this._cardLikeCounter = this._likes.length;
+    this._cardLikeCounter.textContent = this._likes.length;
 
     if (this.isLiked()) {
       this._likeButton.classList.add("card__like-button_active");
@@ -87,8 +88,9 @@ export default class Card {
     }
   }
 
-  _toggleLikeButton() {
-    this._handleDeleteButton(this._id);
+  _remove() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   getView() {
@@ -100,7 +102,7 @@ export default class Card {
     this._cardTitle = this._cardElement.querySelector(".card__title");
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardLikeCounter =
-      this._cardElement.querySelector(".card_likes-count");
+      this._cardElement.querySelector(".card__likes-count");
 
     this._fillCardData();
     this._hideDeleteButton();

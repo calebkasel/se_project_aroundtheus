@@ -79,8 +79,7 @@ const newCardModal = new FormModal({
     api
       .addCard(name, link)
       .then((data) => {
-        const newCard = renderCard(data, userId);
-        cardListSection.addItem(newCard);
+        renderCard(data, userId);
         newCardModal.close();
       })
       .catch(console.error)
@@ -156,8 +155,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       {
         items: initialCards,
         renderer: (data) => {
-          const newCard = renderCard(data, userId);
-          cardListSection.addItem(newCard);
+          renderCard(data, userId);
         },
       },
       cardList
@@ -197,14 +195,13 @@ const renderCard = (data, userId) => {
           })
           .catch(console.error);
       },
-      handleDeleteButton: (cardId) => {
+      handleDeleteButton: () => {
         deleteCardModal.setSubmitAction(() => {
           deleteCardModal.renderLoading(true);
-          card.deleteCard();
           api
-            .deleteCard(cardId)
+            .deleteCard(card._id)
             .then((result) => {
-              card.remove(result.cardId);
+              card.deleteCard(result._id);
               deleteCardModal.close();
             })
             .catch(console.error)
@@ -212,8 +209,8 @@ const renderCard = (data, userId) => {
             .finally(() => {
               deleteCardModal.renderLoading(false, "Yes");
             });
-        });
-        deleteCardModal.open(cardId);
+        }),
+          deleteCardModal.open();
       },
     },
     userId
@@ -235,12 +232,4 @@ const renderCard = (data, userId) => {
 //     .finally(() => {
 //       changeProfPicModal.renderLoading(false, "Save");
 //     });
-// }
-
-// function openUserInfoModal() {
-//   const { userName, description } = userInfo.getUserInfo();
-//   profileEditTitle.value = userName;
-//   profileEditDescription = description;
-//   editFormValidator.resetForm();
-//   edit;
 // }
